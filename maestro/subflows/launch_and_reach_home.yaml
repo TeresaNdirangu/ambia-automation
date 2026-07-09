@@ -1,0 +1,5 @@
+# Deliverable: Reusable subflow pattern (setup)
+
+appId: com.eligeafrica.ambia
+---
+- launchApp

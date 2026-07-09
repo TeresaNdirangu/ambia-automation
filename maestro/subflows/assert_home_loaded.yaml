@@ -1,0 +1,6 @@
+# Deliverable: Reusable subflow pattern (assertion) + shared assertions centralized
+---
+- assertVisible:
+    id: "fab_keypad"
+- assertVisible:
+    id: "txtBalance"
