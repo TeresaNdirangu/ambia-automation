@@ -1,0 +1,11 @@
+# Deliverable: Login/session persistence automated
+
+appId: com.eligeafrica.ambia
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
