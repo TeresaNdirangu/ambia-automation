@@ -1,0 +1,15 @@
+# Deliverable: Basic navigation automated
+
+appId: com.eligeafrica.ambia
+tags:
+  - smoke
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn: "Contacts"
+- tapOn: "Services"
+- tapOn:
+    text: ".*Menu.*"
+- tapOn: ".*Calls"
+- runFlow: ../../subflows/assert_home_loaded.yaml
