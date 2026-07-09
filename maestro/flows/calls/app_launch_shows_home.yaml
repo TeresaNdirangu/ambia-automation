@@ -1,0 +1,12 @@
+# Deliverable: First working flow (Acts as smoke-suite anchor flow)
+# Scope note:  Confirms app launch reaches a working, logged-in home screen.
+
+appId: com.eligeafrica.ambia
+---
+- launchApp
+
+- assertVisible:
+    id: "fab_keypad"
+
+- assertVisible:
+    id: "txtBalance"
