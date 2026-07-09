@@ -4,4 +4,4 @@
 appId: com.ambia.app   # placeholder — replace with the real Ambia package/bundle ID
 
 env:
-  BASE_ENV: staging
+  BASE_ENV: local
