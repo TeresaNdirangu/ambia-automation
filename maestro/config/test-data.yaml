@@ -1,0 +1,9 @@
+# Test data for Maestro flows
+# Never commit real user data, live phone numbers, or production credentials here.
+
+test_users:
+  primary_test_number: "+2547XXXXXXXX"   # replace with a sandbox/test-mode number
+
+notes: >
+  Populate this file as flows are built. Keep test data separate from flow logic
+  so flows stay readable and reusable across environments.

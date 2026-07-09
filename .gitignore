@@ -1,0 +1,32 @@
+# Test output / reports
+reports/*
+!reports/.gitkeep
+
+# Maestro
+.maestro/tmp/
+*.mp4
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+
+# Appium / Node
+appium/node_modules/
+appium/npm-debug.log
+appium/.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Android/iOS build artifacts
+*.apk
+*.ipa
+*.app
+build/
