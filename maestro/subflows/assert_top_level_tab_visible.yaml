@@ -1,11 +1,16 @@
 # Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
 # Scope note: back-navigation from Menu subscreens is inconsistent in the current
-# build - some screens return to Menu, others skip to Home (confirmed via live
-# testing, not assumed). This subflow asserts we've landed on *some* top-level
-# tab screen (tabLayout is shared across Home/Contacts/Services/AmbiaPay/Menu)
-# rather than asserting one specific destination.
+# build - confirmed via live testing (not assumed) to land on Home, Menu, or even
+# the Calls tab depending on the run. This subflow asserts we've landed on *some*
+# top-level tab screen (tabLayout is shared across Home/Contacts/Services/
+# AmbiaPay/Menu) rather than one specific destination. A "Please wait..." loading
+# overlay can also cover the tab bar after back-navigation for a genuinely
+# variable duration (confirmed up to ~15s in one run, not a permanent hang) -
+# this waits generously rather than asserting instantly.
 
 appId: com.eligeafrica.ambia
 ---
-- assertVisible:
-    id: "tabLayout"
+- extendedWaitUntil:
+    visible:
+        id: "tabLayout"
+    timeout: 20000

@@ -1,0 +1,26 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Deliverable: Transactions History display automated (Phase 3, Priority 2)
+# Scope note: Menu > Billing History is the only entry point found for the
+# Transactions History screen (toolbar_text "Transactions History") - this one
+# flow satisfies both Priority 2 deliverables. Row content (amounts, dates,
+# phone numbers) is real dynamic account data, so only the list container
+# id is asserted, never row text.
+# Known app bug: in-app `back` from this screen is confirmed non-deterministic
+# (live-tested repeatedly) - it lands on Home, Menu, or the Calls tab, and can
+# leave an indefinite "Please wait..." overlay for 15s+ before resolving, all
+# on the same build. stopApp+relaunch (already proven reliable in
+# session_persists_after_restart.yaml) is used here instead of `back` to reach
+# a clean state, so this flow's own reliability isn't hostage to that bug.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Billing History"
+- assertVisible:
+    id: "rvBillingList"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
