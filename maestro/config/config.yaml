@@ -1,7 +1,7 @@
 # Base Maestro configuration
 # Reference in flows with: ${OUTPUT.<key>} or via `maestro test --env`
 
-appId: com.ambia.app   # placeholder — replace with the real Ambia package/bundle ID
+appId: com.eligeafrica.ambia
 
 env:
   BASE_ENV: local
