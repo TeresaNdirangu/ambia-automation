@@ -1,0 +1,36 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Scope note: id "user_info" is the actual filter icon on this screen despite
+# its misleading name (a copy-pasted id, confirmed via bounds - it shares
+# content-desc "Ambia" with two other unrelated toolbar icons, so id is the
+# only reliable selector here). This flow covers filter *display* only.
+# Known app bug: btn_continue on this sheet does not respond to taps (tested
+# repeatedly, with a category selected that has real matching data, via both
+# raw tap and Maestro's own tapOn id) - applying a filter is not automatable
+# until that's fixed. Dismissing via device back is used instead of Continue,
+# since it's the only confirmed-reliable way to close this sheet.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Billing History"
+- assertVisible:
+    id: "rvBillingList"
+- tapOn:
+    id: "user_info"
+- assertVisible:
+    id: "category_label"
+- assertVisible:
+    id: "radio_calls"
+- assertVisible:
+    id: "radio_money"
+- assertVisible:
+    id: "radio_esim"
+- assertVisible:
+    id: "date_range_label"
+
+- back
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
