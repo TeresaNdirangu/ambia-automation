@@ -1,0 +1,23 @@
+# Deliverable: Calls page search & profile automated (Phase 3, Priority 2)
+# Scope note: tapping the Calls-tab avatar (id "online") reaches the same
+# Profile screen as Menu > Profile - confirmed via live hierarchy, a second
+# entry point to already-covered content, not a distinct screen. PII fields
+# (name/phone/email) are asserted by id only, never by text.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn:
+    id: "online"
+- assertVisible:
+    id: "profile_name"
+- assertVisible:
+    id: "profile_phone"
+- assertVisible:
+    id: "profile_email"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
