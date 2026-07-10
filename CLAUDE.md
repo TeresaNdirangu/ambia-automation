@@ -53,6 +53,7 @@ Preference order, established from real debugging on this project:
 Known traps on this app, confirmed via real failures — watch for both:
 - **Repeated elements sharing the same generic id** (e.g. the bottom tab bar — `tab_container`, `tab_icon`, `tab_below_text` all repeat across every tab). For these, `text` is the *correct* selector, not a fallback — id is not unique enough to disambiguate.
 - **Leading/trailing whitespace in text nodes** (e.g. `" Calls"`, `" Menu"` — confirmed via raw `maestro hierarchy` dump, not visible in Studio's click-to-inspect). Use a tolerant regex like `.*Menu.*` rather than an exact string when this is suspected.
+- **Misleadingly-named or reused ids across different screens/tabs** — don't infer an element's purpose from its id name. Confirmed instances: on Transactions History, `fav_unfav` is actually the download icon and `user_info` is actually the filter icon (both also share `content-desc="Ambia"` with the back button, so `id` is the only usable selector); in the eSIM store, the Regional tab's list container is `local_esims_list` despite showing region groupings, not local countries; `toolbar_text` is reused generically across many unrelated screens (Transactions History, Call Settings, Calling Rates, Preferences, Forwarding Verification) so it can't identify *which* screen loaded — assert a screen-specific id instead. Always confirm via live `maestro hierarchy`/bounds, not the id string.
 
 ## Maestro flow file requirements
 
