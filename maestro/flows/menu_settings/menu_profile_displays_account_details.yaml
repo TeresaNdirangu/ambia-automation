@@ -1,0 +1,20 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Scope note: profile_name/profile_phone/profile_email hold real account PII
+# on the physical test device - asserted by id only, never by text, so no
+# personal data gets committed into this repo.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Profile"
+- assertVisible:
+    id: "profile_name"
+- assertVisible:
+    id: "profile_phone"
+- assertVisible:
+    id: "profile_email"
+
+- back
+- runFlow: ../../subflows/assert_top_level_tab_visible.yaml

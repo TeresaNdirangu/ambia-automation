@@ -1,0 +1,11 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Scope note: back-navigation from Menu subscreens is inconsistent in the current
+# build - some screens return to Menu, others skip to Home (confirmed via live
+# testing, not assumed). This subflow asserts we've landed on *some* top-level
+# tab screen (tabLayout is shared across Home/Contacts/Services/AmbiaPay/Menu)
+# rather than asserting one specific destination.
+
+appId: com.eligeafrica.ambia
+---
+- assertVisible:
+    id: "tabLayout"

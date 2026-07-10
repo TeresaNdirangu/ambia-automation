@@ -1,0 +1,6 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: launch_and_reach_home.yaml
+- tapOn: ".*Menu.*"
