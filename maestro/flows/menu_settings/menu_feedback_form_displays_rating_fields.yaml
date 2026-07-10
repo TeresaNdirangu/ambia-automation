@@ -1,0 +1,42 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Scope note: btn_submit_feedback is asserted visible but never tapped -
+# submitting would create a real, persistent feedback record tied to this
+# live account, with no teardown flow available (same caution as the
+# documented "Add new contact" trap in CLAUDE.md).
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Feedback"
+- assertVisible:
+    id: "rating_overall_experience"
+- assertVisible:
+    id: "rating_calling_experience"
+- assertVisible:
+    id: "rating_esim"
+- assertVisible:
+    id: "rating_wallet"
+- assertVisible:
+    id: "rating_airtime"
+- assertVisible:
+    id: "rating_ambiapay"
+- assertVisible:
+    id: "et_reason"
+- scrollUntilVisible:
+    element:
+      id: "rating_ease"
+    direction: DOWN
+- assertVisible:
+    id: "rating_ease"
+- scrollUntilVisible:
+    element:
+      id: "btn_submit_feedback"
+    direction: DOWN
+- assertVisible:
+    id: "btn_submit_feedback"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
