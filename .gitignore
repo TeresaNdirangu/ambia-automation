@@ -1,6 +1,7 @@
 # Test output / reports
 reports/*
 !reports/.gitkeep
+debug_logs/
 
 # Maestro
 .maestro/tmp/
