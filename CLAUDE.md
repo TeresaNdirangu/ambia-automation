@@ -23,7 +23,9 @@ Ambia is a native Android/iOS app (VoIP calling + eSIM purchase/management + KYC
 ```
 ambia-automation/
 ├── maestro/
-│   ├── flows/{kyc,calls,contacts,esim,wallet,menu_settings}/
+│   ├── flows/{core,kyc,calls,contacts,esim,wallet,menu_settings}/
+│   │       # core/ = cross-cutting flows not specific to one feature
+│   │       #        (app launch, session persistence, tab navigation)
 │   ├── subflows/          # reusable atomic/setup/assertion building blocks
 │   └── config/            # config.yaml, test-data.yaml
 ├── appium/                # Phase 4 - not active yet

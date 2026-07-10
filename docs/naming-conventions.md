@@ -10,6 +10,14 @@ Examples:
 - `kyc_skip_shows_registration_incomplete.yaml`
 - `calls_search_returns_matching_contact.yaml`
 
+### Cross-cutting flows
+
+Flows that aren't specific to one feature (app launch, session persistence,
+tab-to-tab navigation) live in `flows/core/` rather than being force-fit into
+a feature folder or a feature-prefixed name. Naming inside `flows/core/`
+still follows `action_expectedstate.yaml` (no feature prefix, since there
+isn't one) — e.g. `app_launch_shows_home.yaml`, `basic_navigation_across_tabs.yaml`.
+
 ## Subflows
 
 - Atomic actions: `tap_<element>.yaml`, `dismiss_<dialog>.yaml`
