@@ -1,0 +1,35 @@
+# Deliverable: Contacts module flows automated (Phase 3, Priority 2)
+# Scope note: tapping a contact's number (not the name/avatar - that's not
+# clickable) expands three shortcut icons in place. Confirmed via live
+# testing that their accessibility ids/descs are mismatched from what they
+# visually show (icon_call=phone, icon_message=money/$, icon_delete=info "i")
+# - see CLAUDE.md known traps. This flow asserts all three are visible, but
+# only taps the info icon (icon_delete): it's read-only. icon_call is never
+# tapped here - it places a real outbound call, confirmed via a one-off
+# manual verification this session, and a repeatable flow re-running that on
+# every execution (5x now, plus future regression runs) isn't appropriate
+# without explicit sign-off. icon_message (money/AmbiaPay) is excluded per
+# instruction.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_contacts.yaml
+- tapOn:
+    id: "number_row_root"
+    index: 0
+- assertVisible:
+    id: "icon_call"
+- assertVisible:
+    id: "icon_message"
+- assertVisible:
+    id: "icon_delete"
+
+- tapOn:
+    id: "icon_delete"
+- assertVisible:
+    id: "call_button_container"
+- back
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
