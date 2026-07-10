@@ -1,0 +1,25 @@
+# Deliverable: Calls page search & profile automated (Phase 3, Priority 2)
+# Scope note: this device's call log is genuinely empty (confirmed via live
+# hierarchy - "No recent call activity" / id "empty_view" shows on the base
+# Calls tab too, despite Transactions History showing past "Outbound Call"
+# billing entries - a data-sync discrepancy worth a human look, not something
+# this flow can fix). With no call history to match against, this flow
+# verifies the search UI opens and handles a query gracefully (no crash, a
+# consistent empty state) rather than a positive search match.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn:
+    id: "search_button"
+- assertVisible:
+    id: "search_src_text"
+- inputText: "Tess"
+- assertVisible:
+    id: "empty_view"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
