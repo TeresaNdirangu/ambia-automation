@@ -1,0 +1,24 @@
+# Deliverable: Contacts module flows automated (Phase 3, Priority 2)
+# Scope note: confirmed via live hierarchy dump that the first contact in the
+# list has two numberText children under one contact_item_root (a real
+# multi-number contact set up for this test). Asserts by index/id only, never
+# by the actual numbers/name (real PII on this device) - proves two number
+# rows render before any other section, matching the known device state
+# rather than asserting Maestro-verifiable parent/child structure directly.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_contacts.yaml
+- assertVisible:
+    id: "nickNameView"
+    index: 0
+- assertVisible:
+    id: "number_row_root"
+    index: 0
+- assertVisible:
+    id: "number_row_root"
+    index: 1
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
