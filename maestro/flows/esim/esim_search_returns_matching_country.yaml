@@ -1,0 +1,19 @@
+# Deliverable: eSIM display/search flows automated (Phase 3, Priority 2)
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_esim_store.yaml
+- assertVisible:
+    id: "search_src_text"
+
+- tapOn:
+    id: "search_src_text"
+- inputText: "Kenya"
+- assertVisible:
+    id: "countryName"
+- tapOn:
+    id: "search_close_btn"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml

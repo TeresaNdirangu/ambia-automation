@@ -1,0 +1,8 @@
+# Deliverable: eSIM display/search flows automated (Phase 3, Priority 2)
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: launch_and_reach_home.yaml
+- tapOn: "Services"
+- tapOn:
+    id: "btnBuyESIM"
