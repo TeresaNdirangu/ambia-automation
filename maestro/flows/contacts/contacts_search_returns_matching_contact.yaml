@@ -1,0 +1,20 @@
+# Deliverable: Contacts module flows automated (Phase 3, Priority 2)
+# Scope note: the search query itself is a real device contact name (unavoidable
+# on a personal device where every saved contact is real PII), but the
+# assertion only checks that a result row rendered (id "nickNameView"), never
+# the matched text - same PII-avoidance approach used for Profile.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_contacts.yaml
+- tapOn:
+    id: "search_button"
+- tapOn:
+    id: "input_search_query"
+- inputText: "Ndirangu"
+- assertVisible:
+    id: "nickNameView"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
