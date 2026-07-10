@@ -1,0 +1,27 @@
+# Deliverable: eSIM display/search flows automated (Phase 3, Priority 2)
+# Scope note: each tab renders into a differently-and-sometimes-misleadingly
+# named list container, confirmed via live hierarchy dumps (not assumed) after
+# an initial wrong guess: Local -> "recycler_view", Regional -> a reused
+# "local_esims_list" id despite showing region groupings not local countries,
+# Global -> "global_esims_list". buyNowButton is not tapped - purchase is a
+# separate, Priority 3 deliverable.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_esim_store.yaml
+- assertVisible:
+    id: "recycler_view"
+- assertVisible:
+    text: "Local eSIMs"
+
+- tapOn: "Regional eSIMs"
+- assertVisible:
+    id: "local_esims_list"
+
+- tapOn: "Global eSIMs"
+- assertVisible:
+    id: "global_esims_list"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
