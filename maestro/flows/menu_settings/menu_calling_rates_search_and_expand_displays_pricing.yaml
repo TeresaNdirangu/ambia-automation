@@ -1,0 +1,22 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Calling Rates"
+- assertVisible:
+    id: "rvCallingRatesList"
+- tapOn:
+    id: "countrySearch"
+- inputText: "Kenya"
+- assertVisible: "Kenya"
+- tapOn:
+    id: "txtCountryName"
+- assertVisible:
+    id: "rateContainer"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
