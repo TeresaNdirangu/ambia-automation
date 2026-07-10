@@ -7,9 +7,13 @@ tags:
 - runFlow: ../../subflows/launch_and_reach_home.yaml
 - runFlow: ../../subflows/assert_home_loaded.yaml
 
+# Contacts/Services use exact text: confirmed clean via raw `maestro hierarchy`
+# dump, no leading/trailing whitespace on those two tab labels.
 - tapOn: "Contacts"
 - tapOn: "Services"
+# Menu/Calls use tolerant regex: hierarchy dump confirmed whitespace
+# (" Menu", " Calls") around these two tab labels specifically.
 - tapOn:
     text: ".*Menu.*"
-- tapOn: ".*Calls"
+- tapOn: ".*Calls.*"
 - runFlow: ../../subflows/assert_home_loaded.yaml
