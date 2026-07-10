@@ -1,0 +1,25 @@
+# Deliverable: Menu/Settings flows automated (Phase 3, Priority 2)
+# Scope note: callForwardingSwitch is intentionally never toggled - it controls
+# real call forwarding on a physical line tied to a live phone number, and
+# flipping it has a real, hard-to-reverse effect on inbound calls. Only
+# visibility is asserted. "+ ADD A FORWARDING NUMBER" leads to a screen that
+# requires SMS OTP verification to complete - OTP flows are shelved per
+# CLAUDE.md, so this flow stops at that screen loading, without submitting.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Call Settings"
+- assertVisible:
+    id: "callForwardingSwitch"
+- assertVisible:
+    id: "callRates"
+- tapOn: "+ ADD A FORWARDING NUMBER"
+- assertVisible:
+    id: "txtMobileNumber"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
