@@ -1,0 +1,14 @@
+# Deliverable: Purchase data plan - up to payment (Feature Automation Tracker)
+# SAFE BOUNDARY: never proceeds past the STK phone-number-entry screen -
+# id "payment" (Continue) would trigger a real STK push and is never tapped.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/reach_esim_payment_method_screen.yaml
+- tapOn:
+    id: "m_pesa"
+- runFlow: ../../subflows/assert_autopay_stk_screen_displayed.yaml
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
