@@ -1,0 +1,17 @@
+# Deliverable: Initiate call from contacts (Feature Automation Tracker, Band 2)
+# BAND 2: tapping icon_call places a real outbound VoIP call to a real
+# contact's number. Tapping the number itself (not the name/avatar, which
+# isn't clickable) reveals inline shortcuts (Call/Money/Info) - confirmed via
+# live hierarchy last session. This flow verifies the Call shortcut is
+# reachable and never taps it.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_contacts.yaml
+- tapOn:
+    id: "number_row_root"
+    index: 0
+- assertVisible:
+    id: "icon_call"
+
+# Intentionally stop here - icon_call is never tapped.
