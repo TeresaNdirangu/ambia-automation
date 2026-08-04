@@ -1,0 +1,17 @@
+# Deliverable: eSIM/Airtime payment-method routing (Feature Automation Tracker, Band 1)
+# Confirmed via live hierarchy on both the eSIM purchase and Airtime top-up
+# "Make Payment" screens - same ids, same routing behavior. Called after the
+# Card radio button is already selected by the parent flow.
+# SAFE BOUNDARY: this asserts the card management screen only - real saved
+# cards (masked VISA numbers) are on this account, and id "proceedBtn" would
+# submit a real payment. Never tapped here or by any caller of this subflow.
+
+appId: com.eligeafrica.ambia
+---
+- tapOn: "CONTINUE"
+- assertVisible:
+    id: "rvCardList"
+- assertVisible:
+    id: "addCardBtn"
+- assertVisible:
+    id: "proceedBtn"

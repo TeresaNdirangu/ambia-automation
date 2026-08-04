@@ -1,0 +1,14 @@
+# Deliverable: Purchase data plan - up to payment (Feature Automation Tracker)
+# SAFE BOUNDARY: never proceeds past the Paybill details screen - no payment
+# is ever submitted.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/reach_esim_payment_method_screen.yaml
+- tapOn:
+    id: "m_pesapaybill"
+- runFlow: ../../subflows/assert_paybill_details_displayed.yaml
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml

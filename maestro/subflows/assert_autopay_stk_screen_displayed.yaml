@@ -1,0 +1,15 @@
+# Deliverable: eSIM/Airtime payment-method routing (Feature Automation Tracker, Band 1)
+# Confirmed via live hierarchy on both the eSIM purchase and Airtime top-up
+# "Make Payment" screens - same ids, same routing behavior. Called after the
+# M-PESA Auto Pay radio button is already selected by the parent flow.
+# SAFE BOUNDARY: this asserts the phone-number-entry screen only - id "payment"
+# (the Continue button on THIS screen) would trigger a real STK push and is
+# never tapped, here or by any caller of this subflow.
+
+appId: com.eligeafrica.ambia
+---
+- tapOn: "CONTINUE"
+- assertVisible:
+    id: "et_number12"
+- assertVisible:
+    id: "payment"

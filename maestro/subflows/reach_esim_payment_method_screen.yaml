@@ -1,0 +1,35 @@
+# Deliverable: eSIM/Airtime payment-method routing (Feature Automation Tracker, Band 1)
+# Entry path confirmed via live device: Services > Buy eSIM > search "Kenya" >
+# select country > select a plan (via the operator's own BUY NOW) > Buy Now
+# (sticky footer button - confirmed via live hierarchy after an initial wrong
+# guess at a different, non-rendered buyNowButton instance) > confirm
+# compatibility checkbox > Complete Order > lands on the shared "Make Payment"
+# screen with payment-method radio buttons.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: launch_and_reach_home.yaml
+- tapOn: "Services"
+- tapOn:
+    id: "btnBuyESIM"
+- tapOn:
+    id: "search_src_text"
+- inputText: "Kenya"
+- tapOn:
+    id: "countryName"
+- tapOn:
+    id: "buyNowButton"
+    index: 0
+- scrollUntilVisible:
+    element:
+        id: "packagePriceAtBottom"
+    direction: DOWN
+- tapOn:
+    id: "buyNowButton"
+    rightOf:
+        id: "packagePriceAtBottom"
+- tapOn:
+    id: "esimCompatibilityCheckBox"
+- tapOn: "COMPLETE ORDER"
+- assertVisible:
+    id: "paymentMethodGroup"

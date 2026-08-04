@@ -1,0 +1,18 @@
+# Deliverable: eSIM/Airtime payment-method routing (Feature Automation Tracker, Band 1)
+# Entry path confirmed via live device: Services > Buy Airtime lands directly
+# on the same shared "Make Payment" screen used by eSIM purchase (confirmed
+# via live hierarchy, not assumed) with an empty amount field - "select
+# amount" and "proceed to payment" collapse into filling this one field
+# rather than being separate screens/taps.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: launch_and_reach_home.yaml
+- tapOn: "Services"
+- tapOn:
+    id: "btnTopUp"
+- tapOn:
+    id: "topUpAmount"
+- inputText: "100"
+- assertVisible:
+    id: "paymentMethodGroup"
