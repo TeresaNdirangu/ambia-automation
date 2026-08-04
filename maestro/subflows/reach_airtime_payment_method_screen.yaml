@@ -4,6 +4,9 @@
 # via live hierarchy, not assumed) with an empty amount field - "select
 # amount" and "proceed to payment" collapse into filling this one field
 # rather than being separate screens/taps.
+# The numeric keyboard opened by typing into topUpAmount covers the payment-
+# method radio group and Continue button - confirmed via a live failure, not
+# assumed - so it's dismissed via device back before proceeding.
 
 appId: com.eligeafrica.ambia
 ---
@@ -14,5 +17,6 @@ appId: com.eligeafrica.ambia
 - tapOn:
     id: "topUpAmount"
 - inputText: "100"
+- back
 - assertVisible:
     id: "paymentMethodGroup"
