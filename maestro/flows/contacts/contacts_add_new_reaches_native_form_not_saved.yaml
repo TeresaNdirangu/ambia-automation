@@ -1,0 +1,26 @@
+# Deliverable: Add new contact (Feature Automation Tracker, Band 2)
+# BAND 2: this hands off to the native Samsung Contacts app
+# (com.samsung.android.app.contacts) and would create a real, permanent
+# device contact on Save. Per CLAUDE.md convention, a ZZ_-prefixed test name
+# is typed into the real native form to verify the handoff and form work
+# end-to-end, but Save is never tapped - Cancel is used to back out cleanly.
+# Save/Cancel share a generic "textview" id in the native form (confirmed via
+# live hierarchy) - text is used to disambiguate.
+
+appId: com.eligeafrica.ambia
+---
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_contacts.yaml
+- tapOn:
+    id: "add_button"
+- assertVisible: "Select contact"
+- tapOn: "Create contact"
+- assertVisible:
+    id: "nameEdit"
+- tapOn:
+    id: "nameEdit"
+- inputText: "ZZ_Maestro_Test_Contact"
+- assertVisible: "Save"
+
+# Intentionally stop here - Save is never tapped. Cancel out cleanly instead.
+- tapOn: "Cancel"
