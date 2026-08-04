@@ -1,0 +1,29 @@
+# Deliverable: Initiate call from keypad (Feature Automation Tracker, Band 2)
+# Deliverable: Call Ambia->PSTN / Ambia->Ambia / support lines / international
+#   number (Feature Automation Tracker) - these rows differ only in which
+#   digits get dialed, not in the UI being exercised (same keypad, same
+#   dialButton). One representative flow covers the shared "reach the dial
+#   button, never tap it" boundary for all of them - see session notes.
+# BAND 2: tapping dialButton places a real outbound VoIP call. This flow
+# verifies the keypad, digit entry, and dial button are all reachable and
+# never taps dialButton.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn:
+    id: "fab_keypad"
+- assertVisible:
+    id: "digitsText"
+- tapOn:
+    id: "button1"
+- tapOn:
+    id: "button2"
+- tapOn:
+    id: "button3"
+- assertVisible:
+    id: "dialButton"
+
+# Intentionally stop here - dialButton is never tapped.
