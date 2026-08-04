@@ -1,0 +1,33 @@
+# maestro/flows/kyc/login_reaches_kyc_page.yaml
+# Deliverable: Login via OTP reaches KYC page (prod backend, personal test account)
+# Manual step: OTP entry is not automated - assertVisible below polls for up to 2 min,
+# giving time to manually key in the OTP on-device before continuing.
+
+appId: com.eligeafrica.ambia
+---
+- launchApp
+
+# TODO: confirm ID/text and repeat count for onboarding/description screens
+- tapOn:
+    id: "PLACEHOLDER_continue_btn"
+- tapOn:
+    id: "PLACEHOLDER_continue_btn"
+
+# TODO: confirm phone number field ID
+- tapOn:
+    id: "PLACEHOLDER_phone_input"
+- inputText: "0759957579"
+
+# TODO: confirm checkbox ID
+- tapOn:
+    id: "PLACEHOLDER_terms_checkbox"
+
+# TODO: confirm continue button ID (post number entry)
+- tapOn:
+    id: "PLACEHOLDER_continue_after_number"
+
+# Manual OTP entry happens here on the physical device.
+# This assertion polls for up to 2 minutes, acting as the "pause".
+- assertVisible:
+    id: "PLACEHOLDER_kyc_page_marker"
+    timeout: 120000

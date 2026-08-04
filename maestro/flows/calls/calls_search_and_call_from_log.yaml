@@ -12,13 +12,21 @@ appId: com.eligeafrica.ambia
 - runFlow: ../../subflows/launch_and_reach_home.yaml
 - runFlow: ../../subflows/assert_home_loaded.yaml
 
+# --- Search for the logged entry ---
 - tapOn:
     id: "search_button"
 - assertVisible:
     id: "search_src_text"
 - inputText: "Tess"
 - assertVisible:
-    id: "empty_view"
+    id: "Tess"
+
+# --- Open contact detail from the result ---
+- tapOn: "Tess"
+- assertVisible:
+      id: "txtContactName"
+- tapOn:
+      id: "call_button_container"
 
 - stopApp
 - runFlow: ../../subflows/launch_and_reach_home.yaml

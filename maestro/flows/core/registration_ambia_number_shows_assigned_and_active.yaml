@@ -1,0 +1,23 @@
+# Deliverable: Ambia number assignment confirmation (Phase 3, Feature Automation Tracker)
+# Scope note: verified on the already-registered/logged-in session rather than
+# a fresh registration flow - completing a NEW registration requires manual
+# OTP entry (see Authentication/Registration blockers in this session's report).
+# id "no_internet_tv" is a misleadingly-named id holding the "My Ambia Number"
+# label - confirmed via live hierarchy, not guessed.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn: "Services"
+- assertVisible:
+    id: "no_internet_tv"
+- assertVisible:
+    id: "txtVoipNumber"
+- assertVisible:
+    text: "Number Active"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
