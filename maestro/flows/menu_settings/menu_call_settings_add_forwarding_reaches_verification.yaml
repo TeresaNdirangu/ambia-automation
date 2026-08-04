@@ -5,6 +5,9 @@
 # visibility is asserted. "+ ADD A FORWARDING NUMBER" leads to a screen that
 # requires SMS OTP verification to complete - OTP flows are shelved per
 # CLAUDE.md, so this flow stops at that screen loading, without submitting.
+# Fixed 2026-08-04: the rates text id changed from "callRates" to "txtRates"
+# on the live app since this flow was first built - confirmed via a live
+# failure, not assumed.
 
 appId: com.eligeafrica.ambia
 ---
@@ -15,7 +18,7 @@ appId: com.eligeafrica.ambia
 - assertVisible:
     id: "callForwardingSwitch"
 - assertVisible:
-    id: "callRates"
+    id: "txtRates"
 - tapOn: "+ ADD A FORWARDING NUMBER"
 - assertVisible:
     id: "txtMobileNumber"
