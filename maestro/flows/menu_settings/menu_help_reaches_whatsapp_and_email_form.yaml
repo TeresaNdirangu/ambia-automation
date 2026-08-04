@@ -1,0 +1,41 @@
+# Deliverable: Help - email/WhatsApp (Feature Automation Tracker)
+# Two multi-app-handoff paths on this one "Contact Us" screen:
+# 1. "Chat with us on Whatsapp" hands off to a browser page (WhatsApp isn't
+#    installed on this device - confirmed via live mCurrentFocus) offering
+#    "Open app"/"Download it now" - neither is tapped, since either would
+#    open a real chat pre-filled to send, or start a real app install. The
+#    page's own content (e.g. the visible "WhatsApp" heading) isn't exposed
+#    to the accessibility tree at all - confirmed via live hierarchy, not
+#    assumed - so the browser's own url bar is asserted instead.
+# 2. An in-app email query form with a real "SEND" button (sendemail_btn)
+#    that would submit a real support email with no teardown - same caution
+#    class as Feedback submission. Fields are asserted visible but never
+#    filled/submitted.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Help"
+- assertVisible:
+    text: "Chat with us on Whatsapp"
+- assertVisible:
+    id: "subject_spinner"
+- assertVisible:
+    id: "query_edit_text"
+- assertVisible:
+    id: "sendemail_btn"
+
+- tapOn:
+    id: "numberLayout"
+- extendedWaitUntil:
+    visible:
+        id: "location_bar_edit_text"
+    timeout: 15000
+- assertVisible:
+    text: ".*whatsapp.*"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
