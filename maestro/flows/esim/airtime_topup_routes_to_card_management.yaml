@@ -1,0 +1,15 @@
+# Deliverable: Top up eSIM / Airtime top-up - up to payment (Feature Automation Tracker)
+# SAFE BOUNDARY: never proceeds past the card management screen - real saved
+# cards are on this account and id "proceedBtn" would submit a real payment;
+# it is never tapped.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/reach_airtime_payment_method_screen.yaml
+- tapOn:
+    id: "cardPayment"
+- runFlow: ../../subflows/assert_card_management_screen_displayed.yaml
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
