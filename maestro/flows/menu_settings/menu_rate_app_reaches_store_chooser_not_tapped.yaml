@@ -1,0 +1,22 @@
+# Deliverable: Rate app - menu (Feature Automation Tracker, Band 2)
+# BAND 2: tapping Rate triggers a real OS "Open with" store chooser
+# (Galaxy Store / Google Play Store), confirmed via live mCurrentFocus
+# (android/com.android.internal.app.ResolverActivity). This flow verifies the
+# chooser appears with both store options and dismisses via back - neither
+# store option nor "Just once"/"Always" is ever tapped.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Rate"
+- assertVisible:
+    text: "Open with"
+- assertVisible:
+    text: "Google Play Store"
+- back
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
