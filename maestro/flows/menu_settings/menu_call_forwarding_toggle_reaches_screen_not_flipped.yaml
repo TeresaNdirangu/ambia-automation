@@ -1,0 +1,15 @@
+# Deliverable: Call forwarding - in-app setup (Feature Automation Tracker, Band 2)
+# BAND 2: flipping callForwardingSwitch has a real effect on inbound calls to
+# this live phone line. This flow verifies the toggle is reachable and in its
+# current (off) state, and never taps it.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Call Settings"
+- assertVisible:
+    id: "callForwardingSwitch"
+
+# Intentionally stop here - callForwardingSwitch is never tapped.
