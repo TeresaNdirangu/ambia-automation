@@ -1,0 +1,29 @@
+# Deliverable: Purchased eSIM display (Feature Automation Tracker)
+# A real eSIM was already purchased on this account prior to this session,
+# giving real display data to verify without needing a fresh purchase.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- tapOn: "Services"
+- tapOn:
+    id: "btnBuyESIM"
+- tapOn:
+    id: "nav_regional"
+- assertVisible:
+    id: "rightText1"
+- assertVisible:
+    text: "STATUS"
+- assertVisible:
+    id: "rightText5"
+- tapOn: "DETAILS"
+- assertVisible:
+    id: "tv_iccid"
+- assertVisible:
+    id: "text_remaining_data"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
