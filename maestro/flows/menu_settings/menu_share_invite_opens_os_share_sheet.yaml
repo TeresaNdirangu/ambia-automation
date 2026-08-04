@@ -1,0 +1,31 @@
+# Deliverable: Share - invite friends (Feature Automation Tracker)
+# Share-sheet content is OS-level (tracker note). Tapping Share hands off to
+# the native Android share chooser with a pre-filled invite message -
+# confirmed via live hierarchy (headline "Sharing text",
+# content_preview_text). "Copy" (id "copy") is the one share target safe to
+# select - it copies to clipboard rather than handing off to an external app
+# to send. Selecting it closes the chooser and returns to Menu (confirmed via
+# live hierarchy) - that clean return is used as the pass signal, since this
+# device's adb clipboard access is restricted (dumpsys clipboard returns
+# nothing) and the actual clipboard bytes can't be inspected from here.
+# No other share target (Messages/Gmail/Bluetooth/Chrome/Quick Share) is ever
+# tapped - those would hand off to a real external app to actually send.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_menu.yaml
+- runFlow: ../../subflows/assert_menu_loaded.yaml
+
+- tapOn: "Share"
+- assertVisible:
+    text: "Sharing text"
+- assertVisible:
+    id: "content_preview_text"
+- tapOn:
+    id: "copy"
+- assertVisible:
+    id: "menu_recycler"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
