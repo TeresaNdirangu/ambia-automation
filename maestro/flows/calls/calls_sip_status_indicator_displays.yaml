@@ -1,0 +1,18 @@
+# Deliverable: SIP registration status indicator (Feature Automation Tracker)
+# Scope note (real automation limitation, not a bug): id "imOnlineStatus" is a
+# plain ImageView with no text/desc/checked attribute exposed to the
+# accessibility tree - confirmed via live hierarchy. Its registered-vs-not
+# state is conveyed only by icon color, which Maestro cannot read. This flow
+# can only confirm the indicator renders, not which state it's showing.
+
+appId: com.eligeafrica.ambia
+---
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
+
+- assertVisible:
+    id: "imOnlineStatus"
+
+- stopApp
+- runFlow: ../../subflows/launch_and_reach_home.yaml
+- runFlow: ../../subflows/assert_home_loaded.yaml
